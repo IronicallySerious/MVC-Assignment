@@ -1,0 +1,16 @@
+{
+    "name": "serious/public",
+    "authors": [
+        {
+            "name": "IronicallySerious",
+            "email": "wtwarit@gmail.com"
+        }
+    ],
+    "require": {
+    	"torophp/torophp": "dev-master",
+        "twig/twig": "^2.0"
+    },
+    "autoload": {
+        "classmap": ["app"]
+    }
+}

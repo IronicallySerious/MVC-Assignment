@@ -1,0 +1,26 @@
+
+<hr>
+<div><a href='{{ linkdata.url }}'><h3> {{ linkdata.title }} </h3></a>
+	Author- {{ linkdata.username }}<br>
+</div>
+
+
+<hr>
+<hr>
+Comments<br>
+
+{% for comment in comments %}
+
+	<h3>Anonymous</h3>
+	<i>{{ comment.content }}</i>
+	<br>
+
+{% endfor %}
+
+<br>
+<h3>Add Comment</h3>
+<form method="POST">
+
+	Content: <input type="text" name="content"><br/>
+
+</form>

@@ -1,0 +1,19 @@
+<form method="POST">
+
+	Title: <input type="text" name="title"><br/>
+	URL: <input type="url" name="url"><br/>
+	Tags: <input type="text" name="tags" placeholder="Separated by spaces"><br/>
+	<input type="Submit" value="Submit">
+
+</form>
+
+{% for link in links %}
+<hr>
+<div><a href='{{ link.url }}'><h3> {{ link.title }} </h3></a>
+	Author- {{ link.username }}<br>
+	<a href="link/{{ link.id }}">Comments</a>
+
+</div>
+{% endfor %}
+
+<hr>
