@@ -42,9 +42,16 @@ class LoginController{
 
             // Initialising SESSION variables for further use
             $_SESSION["username"] = $username;
-            $_SESSION["karma"] = $row["karma"];
-            \Models\UserModel::setUserIsSignedIn(true);
+            $USERNAME = $username;
 
+            $_SESSION["karma"] = $row["karma"];
+            $KARMA = $row["karma"];
+
+            $_SESSION["uid"] = $row["uid"];
+            $UID = $row["uid"]; // Session variables seem to reset to NULL after a while
+            
+            \Models\UserModel::setUserIsSignedIn(true);
+            
             // Render the homepage
             \Controllers\HomeController::get();
         }

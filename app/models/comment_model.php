@@ -22,13 +22,13 @@ class CommentModel{
 	}
 
 	// Insert the contents of a comment into the Comments table
-	public static function insert($content,$linkid)
+	public static function insert($content, $linkid, $uid)
 	{
 		$db = \DB::get_instance();
 
-		$stmt = $db->prepare("INSERT INTO Comments(content,linkid)
-								VALUES(?,?)");
-		$stmt->execute([$content,$linkid]);
+		$stmt = $db->prepare("INSERT INTO Comments(content,linkid,`uid`)
+								VALUES(?,?,?)");
+		$stmt->execute([$content,$linkid,$uid]);
 		$stmt = null;
 
 		return;

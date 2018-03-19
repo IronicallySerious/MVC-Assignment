@@ -24,11 +24,20 @@ class SignUpController{
         // Acquire users(if any) in the table of the same username
         $rows = \Models\UserModel::findWithoutPassword()($username);
 
-        // If the rows is not empty
+        // If the row is empty
         if(count($rows) == 0)
         {
             // Fires the UserModel to insert user details into the database
             \Models\UserModel::insertUser($username, $hashedPassword);
+            
+            $row = \Models\UserModel::getUserDetails($username);
+
+            $_SESSION = array(
+                "username" => $row["username"],
+                "bSignedIn" => true,
+                "karma" => $row["karma"],
+                "uid" => $row["uid"]
+            );
 
             // Redirect to homepage
             echo \View\Loader::make()->render('templates/home.twig',

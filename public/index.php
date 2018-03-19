@@ -23,6 +23,8 @@ Toro::serve(array(
     "/" => "\Controllers\LoginController",
 
     "/link/:number" => "\Controllers\LinkController",
+        "/link/upvote/:number/:alpha" => "\Controllers\UpvoteController",
+        "/link/downvote/:number/:alpha" => "\Controllers\DownvoteController",
 
     "/u/:alpha" => "\Controllers\UserController",
 

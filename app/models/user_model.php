@@ -22,7 +22,8 @@ namespace Models;
             "username" => NULL,
             "password" => NULL,
             "bSignedIn" => false,
-            "karma" => NULL
+            "karma" => NULL,
+            "uid" => NULL
         );
 */
 
@@ -45,6 +46,10 @@ class UserModel{
         return $_SESSION["username"];
     }
 
+    public function getUserUid()
+    {
+        return $_SESSION["uid"];
+    }
 
     // Sets the boolean value of isUserLoggedIn
     public function setUserIsSignedIn($bNewValue)
@@ -71,7 +76,6 @@ class UserModel{
     /* 
         Returns the entire result of a SELECT query that matches the
         username and hashed password given to it in as parameters
-        *Returns NULL if more than one row is found
      */
     public function find($username, $hashedPassword)
     {
@@ -79,7 +83,7 @@ class UserModel{
         $db = \DB::get_instance();
 
         // Prepare a SELECT query
-        $stmt = $db->prepare("SELECT `username`,`password`,`karma` FROM `Users` WHERE `username`= ? AND `password`= ? ");
+        $stmt = $db->prepare("SELECT `username`,`password`,`karma`,`uid` FROM `Users` WHERE `username`= ? AND `password`= ? ");
         
         // Execute the query
         $stmt->execute([$username, $hashedPassword]);
@@ -93,7 +97,7 @@ class UserModel{
 
     /* 
         Returns the entire result of a SELECT query that matches the
-        username and DOES NOT MATCH any hashed passwords given to it in as parameters
+        username and DOES NOT CONSIDER MATCHED hashed passwords given to it
         *Returns NULL if more than one row is found
      */
     public function findWithoutPassword($username)
@@ -113,6 +117,39 @@ class UserModel{
         // Return the results
         return $rows;            
     }
+
+    // Returns all columns of a specific username in Users table
+    public static function getUserDetails($username)
+    {
+        // Initialise a link with the database
+        $db = \DB::get_instance();
+
+        $stmt = $db->prepare("SELECT * FROM `Users` WHERE `username`= ?");
+        $stmt->execute([$username]);
+
+        // Acquire the results
+        $row = $stmt->fetch( \PDO::FETCH_ASSOC ); // fetchAll() does <$stmt = null;> automatically <-- GOOD PRACTICE	
+
+        // Return the results
+        return $row; 
+    }
+
+    // Returns the username of a user corresponding to a link that they posted
+    public static function getUserNameByLinkId($linkid)
+    {
+        // Initialise a link with the database
+        $db = \DB::get_instance();
+
+        $stmt = $db->prepare("SELECT `username` FROM `Links` WHERE `id`= ?");
+        $stmt->execute([$linkid]);
+
+        // Acquire the results
+        $row = $stmt->fetch( \PDO::FETCH_ASSOC ); // fetchAll() does <$stmt = null;> automatically <-- GOOD PRACTICE	
+
+        // Return the results
+        return $row["username"]; 
+    }
+
 }
 
 ?>

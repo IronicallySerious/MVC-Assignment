@@ -5,7 +5,7 @@ namespace Models;
 // Deals with link storage and display 
 class LinkModel{
 
-	// Returns all links that ever got posted in the website in descending order
+	// Returns all links that ever got posted in the website in descending order of time of posting
 	public static function all()
 	{
 		$db = \DB::get_instance();

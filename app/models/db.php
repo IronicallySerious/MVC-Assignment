@@ -2,7 +2,7 @@
 
 /* 
 	Global class that comprises of a function that sets up a PDO connection to the database.
-	Used to obtain database instance while running SQL commands through PHP
+	Used to obtain a PDO database instance while running SQL commands through PHP
 */
 class DB{
 
