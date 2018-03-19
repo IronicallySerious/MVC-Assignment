@@ -12,10 +12,12 @@ return array(
     'Controllers\\LinkController' => $baseDir . '/app/controllers/link_controller.php',
     'Controllers\\LoginController' => $baseDir . '/app/controllers/login_controller.php',
     'Controllers\\SignUpController' => $baseDir . '/app/controllers/signup_controller.php',
+    'Controllers\\TrendingController' => $baseDir . '/app/controllers/trending_controller.php',
     'Controllers\\UserController' => $baseDir . '/app/controllers/user_controller.php',
     'DB' => $baseDir . '/app/models/db.php',
     'Models\\CommentModel' => $baseDir . '/app/models/comment_model.php',
     'Models\\LinkModel' => $baseDir . '/app/models/link_model.php',
+    'Models\\UpvoteModel' => $baseDir . '/app/models/upvote_model.php',
     'Models\\UserModel' => $baseDir . '/app/models/user_model.php',
     'View\\Loader' => $baseDir . '/app/views/loader.php',
 );

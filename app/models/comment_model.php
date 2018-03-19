@@ -15,9 +15,13 @@ class CommentModel{
 
 		$rows = $stmt->fetchAll(); // fetchAll() does <$stmt = null;> automatically
 
+		// Increment the click count
+		\Models\LinkModel::setClickCount($linkid);
+
 		return $rows;
 	}
 
+	// Insert the contents of a comment into the Comments table
 	public static function insert($content,$linkid)
 	{
 		$db = \DB::get_instance();

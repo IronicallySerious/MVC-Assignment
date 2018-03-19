@@ -50,10 +50,12 @@ class ComposerStaticInit27e7fb646005e8d2c2cb12a31dcd2da1
         'Controllers\\LinkController' => __DIR__ . '/../..' . '/app/controllers/link_controller.php',
         'Controllers\\LoginController' => __DIR__ . '/../..' . '/app/controllers/login_controller.php',
         'Controllers\\SignUpController' => __DIR__ . '/../..' . '/app/controllers/signup_controller.php',
+        'Controllers\\TrendingController' => __DIR__ . '/../..' . '/app/controllers/trending_controller.php',
         'Controllers\\UserController' => __DIR__ . '/../..' . '/app/controllers/user_controller.php',
         'DB' => __DIR__ . '/../..' . '/app/models/db.php',
         'Models\\CommentModel' => __DIR__ . '/../..' . '/app/models/comment_model.php',
         'Models\\LinkModel' => __DIR__ . '/../..' . '/app/models/link_model.php',
+        'Models\\UpvoteModel' => __DIR__ . '/../..' . '/app/models/upvote_model.php',
         'Models\\UserModel' => __DIR__ . '/../..' . '/app/models/user_model.php',
         'View\\Loader' => __DIR__ . '/../..' . '/app/views/loader.php',
     );

@@ -14,11 +14,13 @@ class LoginController{
         // Render the home page if the user is logged in instead of the login page again
         if(\Models\UserModel::isUserSignedIn() == false)
         {
+            // Render login page
             echo \View\Loader::make()->render('templates/login.twig');
         }
         if(\Models\UserModel::isUserSignedIn() == true)
         {
-            echo \View\Loader::make()->render('templates/home.twig');
+            // Render the home page
+            \Controllers\HomeController::get();
         }
     }
 
@@ -35,6 +37,7 @@ class LoginController{
         // Check if the query returned a result
         if(count($row) == 1)
         {
+            // Control reaching here means that the user is legit
             \Models\UserModel::setUserIsSignedIn(true);
 
             // Initialising SESSION variables for further use
@@ -42,7 +45,8 @@ class LoginController{
             $_SESSION["karma"] = $row["karma"];
             \Models\UserModel::setUserIsSignedIn(true);
 
-            echo \View\Loader::make()->render('templates/home.twig');
+            // Render the homepage
+            \Controllers\HomeController::get();
         }
         else
         {

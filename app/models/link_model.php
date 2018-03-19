@@ -5,12 +5,13 @@ namespace Models;
 // Deals with link storage and display 
 class LinkModel{
 
-	// Returns all links that ever got posted in the website
+	// Returns all links that ever got posted in the website in descending order
 	public static function all()
 	{
 		$db = \DB::get_instance();
 
-		$stmt = $db->prepare("SELECT * FROM Links");
+		$stmt = $db->prepare("SELECT * FROM Links
+								ORDER BY sharetime DESC");
 		$stmt->execute();
 
 		$rows = $stmt->fetchAll(); // fetchAll() does <$stmt = null;> automatically
@@ -23,11 +24,12 @@ class LinkModel{
 	{
 		$db = \DB::get_instance();
 
+		// Insert title, link url, username of OP and tags associated with it in the database
 		$stmt = $db->prepare(
-			"INSERT INTO Links(title,url,username,tags)
-				VALUES(?,?,?,?)"
+			"INSERT INTO Links(title,`url`,username,tags,clicks,sharetime)
+				VALUES(?,?,?,?,?,DEFAULT)"
 		);
-		$stmt->execute([$title,$url,$username,$tags]);
+		$stmt->execute([$title,$url,\Models\UserModel::getUsername(),$tags,0]);
 		$stmt = null;
 
 		return;
@@ -40,7 +42,9 @@ class LinkModel{
 		$db = \DB::get_instance();
 
 		// Prepare and send a SQL query
-		$stmt = $db->prepare("SELECT title,username,url FROM Links WHERE id=?");
+		$stmt = $db->prepare("SELECT id,title,username,`url`,clicks 
+								FROM Links 
+								WHERE id=?");
 		$stmt->execute([$id]);
 
 		// Collect results
@@ -48,5 +52,17 @@ class LinkModel{
 
 		// Ship
 		return $rows;
+	}
+
+	// Increments the click count by 1
+	public static function setClickCount($linkid)
+	{
+		// Init a link to the db
+		$db = \DB::get_instance();
+
+		$stmt = $db->prepare("UPDATE Links
+								SET clicks = clicks + 1
+								WHERE id = ?");
+		$stmt->execute([$linkid]);
 	}
 }

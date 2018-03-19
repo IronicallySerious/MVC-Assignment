@@ -1,4 +1,4 @@
-<form method="POST">
+<form method="POST" action="/home">
 
 	Title: <input type="text" name="title"><br/>
 	URL: <input type="url" name="url"><br/>
@@ -7,11 +7,16 @@
 
 </form>
 
+<a href="/home/trending"><h1>TRENDING</h1></a>
+<a href="/home/following"><h1>FOLLOWING</h1></a>
+
 {% for link in links %}
 <hr>
-<div><a href='{{ link.url }}'><h3> {{ link.title }} </h3></a>
+<div><a href='link/{{ link.id }}'><h3> {{ link.title }} </h3></a>
+	<u><i>{{ link.sharetime }}</i></u>
+	Views- {{ link.clicks }}
 	Author- {{ link.username }}<br>
-	<a href="link/{{ link.id }}">Comments</a>
+	<h6><a href=" {{ link.url }} ">Jump</a></h6>
 
 </div>
 {% endfor %}

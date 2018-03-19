@@ -10,13 +10,15 @@ class LinkController{
 	// TODO: Add description
 	public function get($slug)
 	{
-		$queryresult = \Models\LinkModel::find($slug);
+		$queryresult = \Models\LinkModel::find($slug, "ascending");
 		$comments = \Models\CommentModel::find($slug);
+		$upvotes = \Models\UpvoteModel::getUpvotes($queryresult['id']);
 
 		echo \View\Loader::make()->render('templates/comments.twig',
 					array(
 						'linkdata' => $queryresult,
-						'comments' => $comments
+						'comments' => $comments,
+						'upvotes' => $upvotes
 					));
 	}
 

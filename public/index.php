@@ -21,9 +21,15 @@ class Handler
 
 Toro::serve(array(
     "/" => "\Controllers\LoginController",
+
     "/link/:number" => "\Controllers\LinkController",
+
     "/u/:alpha" => "\Controllers\UserController",
-    "/home" => "\Controllers\HomePageController",
+
+    "/home" => "\Controllers\HomeController",
+        "/home/trending" => "\Controllers\TrendingController",
+        "/home/following" => "\Controllers\FollowingFeedController",
+
     "/signup" => "\Controllers\SignUpController"
 ));
 
