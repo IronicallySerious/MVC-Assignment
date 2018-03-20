@@ -4,6 +4,10 @@ namespace Models;
 
 class KarmaModel{
     
+//
+// ─── MEMBER FUNCTIONS ────────────────────────────────────────────────────────────
+//
+
     // Increases karma of a user of a specific id, passed as an argument
     public static function increaseKarma($uid)
     {

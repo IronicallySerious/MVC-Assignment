@@ -3,6 +3,11 @@
 namespace Models;
 
 class DownvoteModel{
+
+//
+// ─── MEMBER FUNCTIONS ────────────────────────────────────────────────────────────
+//
+
     public static function hasUserDOWNVOTEDThisLink($linkid, $uid)
     {
         // Still checking upvote statistics because this function doesn't check for type = 1 or -1

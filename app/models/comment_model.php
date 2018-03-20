@@ -5,6 +5,10 @@ namespace Models;
 // Deals with displaying, inserting and handling comments
 class CommentModel{
 
+//
+// ─── MEMBER FUNCTIONS ────────────────────────────────────────────────────────────
+//
+
 	// Finds a comment that matches a particular linkid
 	public static function find($linkid)
 	{

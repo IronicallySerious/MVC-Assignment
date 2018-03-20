@@ -1,0 +1,12 @@
+<h1>Users following {{ username }}</h1>
+
+<ul type="none">
+    {% for followingUser in following %}
+	
+		<a href = "/u/{{ followingUser }}">
+            <h4>{{ followingUser }}</h4><br>
+        </a>
+	
+	{% endfor %}
+</ul>
+

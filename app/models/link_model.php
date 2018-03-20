@@ -5,6 +5,10 @@ namespace Models;
 // Deals with link storage and display 
 class LinkModel{
 
+//
+// ─── MEMBER FUNCTIONS ────────────────────────────────────────────────────────────
+//
+
 	// Returns all links that ever got posted in the website in descending order of time of posting
 	public static function all()
 	{
@@ -66,24 +70,32 @@ class LinkModel{
 		$stmt->execute([$linkid]);
 	}
 
-	// Returns result set of trending links in descending order of trendiness
+	/* 
+		Returns result set of trending links in descending order of trendiness
+		The trendiness of a link has been decided to be dependent on the sum of clicks and upvotes
+		that a link gets, instead of 
+	*/
 	public static function getTrendingLinks()
 	{
 		// Init a link to the db
 		$db = \DB::get_instance();
 
+		// Update the link upvote count
+		$stmt = $db->prepare("UPDATE `Links`
+								SET `upvotes`= (SELECT count(*) FROM Upvotes
+												WHERE Upvotes.lid = id AND Upvotes.type = 1)
+							");
+		$stmt->execute();
+
+		// Update the traffic count
+		$stmt = $db->prepare("UPDATE `Links`
+								SET `traffic`= clicks + upvotes");
+		$stmt->execute();
+
 		// Prepare and send a SQL query
-		$stmt = $db->prepare("CREATE TABLE LinksJOINUpvotes AS 
-								SELECT lid, clicks, count(*) FROM Links JOIN Upvotes
-								WHERE Links.id = Upvotes.lid
-								GROUP BY lid");
+		$stmt = $db->prepare("SELECT * FROM Links
+								ORDER BY traffic");
 		$stmt->execute();
-
-		$stmt = $db->prepare("SELECT count() FROM LinksJOINUpvotes
-								GROUP BY lid");
-		$stmt->execute();
-
-		
 
 		// Collect results
 		$rows = $stmt->fetchAll(); // fetchAll() does <$stmt = null;> automatically <-- GOOD PRACTICE	
@@ -92,8 +104,68 @@ class LinkModel{
 		return $rows;
 	}
 
+	// Update the link upvote count
+	public static function setUpdateCount()
+	{
+		// Init a link to the db
+		$db = \DB::get_instance();
+
+		// Update the link upvote count
+		$stmt = $db->prepare("UPDATE `Links`
+								SET `upvotes`= (SELECT count(*) FROM Upvotes
+												WHERE Upvotes.lid = id AND Upvotes.type = 1)
+							");
+		$stmt->execute();
+
+		$stmt = NULL;
+
+		return;
+	}
+
+	// TODO: Add comment and definition
 	public static function insertTags($tags, $linkid)
 	{
 
+	}
+
+	// Returns links under a particular username
+	public static function getLinksByAUser($username)
+	{
+		// Init a link to the db
+		$db = \DB::get_instance();
+
+		// Prepare and send a SQL query
+		$stmt = $db->prepare("SELECT * FROM Links 
+								WHERE username = ?
+								ORDER BY sharetime DESC");
+		$stmt->execute([$username]);
+
+		// Collect results
+		$rows = $stmt->fetchAll(); // fetchAll() does <$stmt = null;> automatically <-- GOOD PRACTICE	
+
+		// Ship
+		return $rows;
+	}
+
+	// Returns links under a particular uid
+	public static function getLinksByAUserID($uid)
+	{
+		// Init a link to the db
+		$db = \DB::get_instance();
+
+		// Acquire username from uid
+		$username = \Models\UserModel::getUserDetailByUserId($uid, "username");
+
+		// Prepare and send a SQL query
+		$stmt = $db->prepare("SELECT * FROM Links 
+								WHERE username = ?
+								ORDER BY sharetime DESC");
+		$stmt->execute([$username]);
+
+		// Collect results
+		$rows = $stmt->fetchAll(); // fetchAll() does <$stmt = null;> automatically <-- GOOD PRACTICE	
+
+		// Ship
+		return $rows;
 	}
 }

@@ -13,11 +13,24 @@
 
 {% for link in links %}
 <hr>
-<div><a href='link/{{ link.id }}'><h3> {{ link.title }} </h3></a>
-	<u><i>{{ link.sharetime }}</i></u>
+<div>
+	<a href='link/{{ link.id }}'>
+		<h3>
+			{{ link.title }}
+		</h3>
+	</a>
+
+	<u>
+		<i>
+			{{ link.sharetime }}
+		</i>
+	</u>
+
 	Views- {{ link.clicks }}
 	Author- {{ link.username }}<br>
-	<h6><a href=" {{ link.url }} ">Jump</a></h6>
+	<h6>
+		<a href=" {{ link.url }} ">Jump</a>
+	</h6>
 
 </div>
 {% endfor %}

@@ -150,6 +150,21 @@ class UserModel{
         return $row["username"]; 
     }
 
+    // Returns the detail (of a user id) sent as an argument
+    public static function getUserDetailByUserId($uid, $detail)
+    {
+        // Initialise a link with the database
+        $db = \DB::get_instance();
+
+        $stmt = $db->prepare("SELECT ? FROM `Users` WHERE `uid` = ?");
+        $stmt->execute([$detail, $uid]);
+
+        // Acquire the results
+        $row = $stmt->fetch( \PDO::FETCH_ASSOC ); // fetchAll() does <$stmt = null;> automatically <-- GOOD PRACTICE	
+
+        // Return the results
+        return $row[$detail];
+    }
 }
 
 ?>

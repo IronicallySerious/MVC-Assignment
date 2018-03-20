@@ -4,6 +4,7 @@ namespace Controllers;
 
 session_start();
 
+// Handles the upvoting procedure
 class UpvoteController{
     public static function get($linkid, $username)
     {
@@ -33,6 +34,7 @@ class UpvoteController{
         }
         else
         {
+            // TODO: Add ability to take back the upvote
             ; // Do nothing if the user DID upvote it
         }
         

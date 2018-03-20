@@ -34,8 +34,10 @@ Toro::serve(array(
 
     "/home" => "\Controllers\HomeController",
         "/home/trending" => "\Controllers\TrendingController",
-        "/home/following" => "\Controllers\FollowingFeedController", /* TODO: Add follower feed */
+        "/home/following" => "\Controllers\FollowingFeedController", /* TODO: Add following feed */
 
-    "/signup" => "\Controllers\SignUpController"
+    "/signup" => "\Controllers\SignUpController",
+
+    "/toplinks" => "\Controllers\TopLinksController"
 ));
 

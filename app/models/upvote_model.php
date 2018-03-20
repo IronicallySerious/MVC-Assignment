@@ -4,6 +4,10 @@ namespace Models;
 
 class UpvoteModel{
 
+//
+// ─── MEMBER FUNCTIONS ────────────────────────────────────────────────────────────
+//
+
     // Returns the number of upvotes of a link
     public static function getUpvotes($linkid)
     {

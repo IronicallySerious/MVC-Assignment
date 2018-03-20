@@ -6,3 +6,30 @@ Following: {{ userdata.following }}<br/>
 <a href="/u/{{ userdata.username }}/followers">Followers</a>|
 <a href="/u/{{ userdata.username }}/following">Following</a>
 
+<h3>Links posted</h3>
+
+{% for link in links %}
+<hr>
+<div>
+    <a href='link/{{ link.id }}'>
+        <h3> 
+            {{ link.title }} 
+        </h3>
+    </a>
+	<u>
+        <i>
+            {{ link.sharetime }}
+        </i>
+    </u>
+
+	Views- {{ link.clicks }}
+	
+    <h6>
+        <a href=" {{ link.url }} ">
+            Jump
+        </a>
+    </h6>
+
+</div>
+{% endfor %}
+

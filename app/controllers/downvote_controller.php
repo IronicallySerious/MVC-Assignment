@@ -35,6 +35,7 @@ class DownvoteController{
         }
         else
         {
+            // TODO: Add ability to remove downvote
             ; // Do nothing if the user DID downvote it
         }
         

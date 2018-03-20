@@ -16,10 +16,14 @@ class UserController{
         if($row)
         // If the query returned a result for the username
         {
+            // Get any links posted by the this user
+            $links = \Models\LinkModel::getLinksByAUser($username);
+
             // Render user profile page
             echo \View\Loader::make()->render('templates/user.twig',
                                                 array(
-                                                    'userdata' => $row
+                                                    'userdata' => $row,
+                                                    'links' => $links
                                                 ));
         }
         else
