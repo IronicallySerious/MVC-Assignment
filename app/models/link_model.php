@@ -77,24 +77,18 @@ class LinkModel{
 	*/
 	public static function getTrendingLinks()
 	{
+		// Update upvote counts in Links table
+		self::setUpdateUpvoteCount();
+
+		// Update the traffic count
+		self::setUpdateClickCount();
+
 		// Init a link to the db
 		$db = \DB::get_instance();
 
-		// Update the link upvote count
-		$stmt = $db->prepare("UPDATE `Links`
-								SET `upvotes`= (SELECT count(*) FROM Upvotes
-												WHERE Upvotes.lid = id AND Upvotes.type = 1)
-							");
-		$stmt->execute();
-
-		// Update the traffic count
-		$stmt = $db->prepare("UPDATE `Links`
-								SET `traffic`= clicks + upvotes");
-		$stmt->execute();
-
 		// Prepare and send a SQL query
 		$stmt = $db->prepare("SELECT * FROM Links
-								ORDER BY traffic");
+								ORDER BY traffic DESC");
 		$stmt->execute();
 
 		// Collect results
@@ -104,8 +98,8 @@ class LinkModel{
 		return $rows;
 	}
 
-	// Update the link upvote count
-	public static function setUpdateCount()
+	// Updates the link upvote count
+	public static function setUpdateUpvoteCount()
 	{
 		// Init a link to the db
 		$db = \DB::get_instance();
@@ -113,10 +107,27 @@ class LinkModel{
 		// Update the link upvote count
 		$stmt = $db->prepare("UPDATE `Links`
 								SET `upvotes`= (SELECT count(*) FROM Upvotes
-												WHERE Upvotes.lid = id AND Upvotes.type = 1)
-							");
+												WHERE Upvotes.lid = id AND Upvotes.type = 1)");
 		$stmt->execute();
 
+		// Security purposes
+		$stmt = NULL;
+
+		return;
+	}
+
+	// Update the click count
+	public static function setUpdateClickCount()
+	{
+		// Init a link to the db
+		$db = \DB::get_instance();
+
+		// Update the traffic count
+		$stmt = $db->prepare("UPDATE `Links`
+								SET `traffic`= clicks + upvotes");
+		$stmt->execute();
+
+		// Security purposes
 		$stmt = NULL;
 
 		return;
