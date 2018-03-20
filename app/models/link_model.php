@@ -26,10 +26,10 @@ class LinkModel{
 
 		// Insert title, link url, username of OP and tags associated with it in the database
 		$stmt = $db->prepare(
-			"INSERT INTO Links(title,`url`,username,tags,clicks,sharetime)
-				VALUES(?,?,?,?,?,DEFAULT)"
+			"INSERT INTO Links(title,`url`,username,clicks,sharetime)
+				VALUES(?,?,?,?,DEFAULT)"
 		);
-		$stmt->execute([$title,$url,\Models\UserModel::getUsername(),$tags,0]);
+		$stmt->execute([$title,$url,\Models\UserModel::getUsername(),0]);
 		$stmt = null;
 
 		return;
@@ -64,5 +64,36 @@ class LinkModel{
 								SET clicks = clicks + 1
 								WHERE id = ?");
 		$stmt->execute([$linkid]);
+	}
+
+	// Returns result set of trending links in descending order of trendiness
+	public static function getTrendingLinks()
+	{
+		// Init a link to the db
+		$db = \DB::get_instance();
+
+		// Prepare and send a SQL query
+		$stmt = $db->prepare("CREATE TABLE LinksJOINUpvotes AS 
+								SELECT lid, clicks, count(*) FROM Links JOIN Upvotes
+								WHERE Links.id = Upvotes.lid
+								GROUP BY lid");
+		$stmt->execute();
+
+		$stmt = $db->prepare("SELECT count() FROM LinksJOINUpvotes
+								GROUP BY lid");
+		$stmt->execute();
+
+		
+
+		// Collect results
+		$rows = $stmt->fetchAll(); // fetchAll() does <$stmt = null;> automatically <-- GOOD PRACTICE	
+
+		// Ship
+		return $rows;
+	}
+
+	public static function insertTags($tags, $linkid)
+	{
+
 	}
 }

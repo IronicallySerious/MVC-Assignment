@@ -1,29 +1,51 @@
+<!DOCTYPE>
+<html>
 
-<hr>
-<div><a target="_blank" href='{{ linkdata.url }}'><h3> {{ linkdata.title }} </h3></a>
-	Author- {{ linkdata.username }}<br>
-	Views- {{ linkdata.clicks }} 
-	 | <a href="/link/upvote/{{ linkdata.id }}/{{ username }}">Upvote</a>
-	 | <a href="/link/downvote/{{ linkdata.id }}/{{ username }}">Downvote</a>
-</div>
+<head>
 
+	<title>IReadit</title>
 
-<hr>
-<hr>
-Comments<br>
+</head>
 
-{% for comment in comments %}
+<body>
 
-	<h3>Anonymous</h3>
-	<i>{{ comment.content }}</i>
+	<nav>
+		<ul type="none" class="navbar-ul">
+			<li>Home</li>
+			<li>Top links</li>
+			<li>Trending</li>
+			<li>Following</li>
+		</ul>
+	</nav>
+	
+	<hr>
+	<div><a target="_blank" href='{{ linkdata.url }}'><h3> {{ linkdata.title }} </h3></a>
+		Author- {{ linkdata.username }}<br>
+		Views- {{ linkdata.clicks }} 
+			| <a href="/link/upvote/{{ linkdata.id }}/{{ username }}">Upvote</a>
+			| <a href="/link/downvote/{{ linkdata.id }}/{{ username }}">Downvote</a>
+	</div>
+	
+	
+	<hr>
+	<hr>
+	Comments<br>
+	
+	{% for comment in comments %}
+	
+		<h3>{{ comment.username }}</h3>
+		<i>{{ comment.content }}</i>
+		<br>
+		<button href="/comment/upvote/{{ linkdata.id }}/{{ comment.username }}">Upvote</button>
+	
+	{% endfor %}
+	
 	<br>
-
-{% endfor %}
-
-<br>
-<h3>Add Comment</h3>
-<form method="POST">
-
-	Content: <input type="text" name="content"><br/>
-
-</form>
+	<h3>Add Comment</h3>
+	<form method="POST">
+	
+		Content: <input type="text" name="content"><br/>
+	
+	</form>
+</body>
+</html>

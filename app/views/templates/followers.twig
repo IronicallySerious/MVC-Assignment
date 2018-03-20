@@ -1,0 +1,10 @@
+<h1>Followers</h1>
+
+<ul type="none">
+    {% for follower in followers %}
+	
+		<a href = "/u/{{ follower }}"><h4>{{ follower }}</h4><br></a>
+	
+	{% endfor %}
+</ul>
+

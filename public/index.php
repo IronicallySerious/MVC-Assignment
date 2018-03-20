@@ -26,11 +26,15 @@ Toro::serve(array(
         "/link/upvote/:number/:alpha" => "\Controllers\UpvoteController",
         "/link/downvote/:number/:alpha" => "\Controllers\DownvoteController",
 
+    "/comment/:number/:alpha" => "\Controllers\CommentController",
+
     "/u/:alpha" => "\Controllers\UserController",
+        "/u/:alpha/followers" => "\Controllers\FollowerController",
+        "/u/:alpha/following" => "\Controllers\FollowingController",
 
     "/home" => "\Controllers\HomeController",
         "/home/trending" => "\Controllers\TrendingController",
-        "/home/following" => "\Controllers\FollowingFeedController",
+        "/home/following" => "\Controllers\FollowingFeedController", /* TODO: Add follower feed */
 
     "/signup" => "\Controllers\SignUpController"
 ));

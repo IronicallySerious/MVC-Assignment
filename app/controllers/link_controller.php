@@ -17,12 +17,11 @@ class LinkController{
 		$username = $_SESSION["username"];
 
 		echo \View\Loader::make()->render('templates/comments.twig',
-					array(
-						'linkdata' => $queryresult,
-						'comments' => $comments,
-						'upvotes' => $upvotes,
-						'username' => $username
-					));
+											array(
+												'linkdata' => $queryresult,
+												'comments' => $comments,
+												'upvotes' => $upvotes
+											));
 	}
 
 	// Called when a comment is posted on the link viewer page
@@ -32,7 +31,7 @@ class LinkController{
 		$content = $_POST['content'];
 		$linkid = $slug;
 
-		\Models\CommentModel::insert($content,$linkid, $_SESSION["uid"]);
+		\Models\CommentModel::insert($content,$linkid, $_SESSION["uid"], $_SESSION["username"]);
 
 		// Re-Rendering the page to incorporate the new comment
 		self::get($linkid);

@@ -13,7 +13,8 @@ class HomeController{
 
 		echo \View\Loader::make()->render('templates/home.twig',
 				array(
-					'links' => $links
+					'links' => $links,
+					'username' => $_SESSION["username"]
 				));
 	}
 
@@ -26,14 +27,15 @@ class HomeController{
 		$username = $_POST['username'];
 		$tags = $_POST['tags'];
 
+		// Insert the link in the database
 		\Models\LinkModel::insert($title, $url, $username, $tags);
 
 		$links = \Models\LinkModel::all();
 
-			echo \View\Loader::make()->render('templates/home.twig',
-					array(
-						'links' => $links
-					));
+		echo \View\Loader::make()->render('templates/home.twig',
+				array(
+					'links' => $links
+				));
 
 	}
 }
