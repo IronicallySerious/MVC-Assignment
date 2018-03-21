@@ -23,14 +23,4 @@ class CommentController
         // Redirect to link viewer page
         header("Location: localhost:8000/link/" . $linkid);
     }
-
-    // Sorts the comments in a particular order
-    public static function post()
-    {
-        // Acquire the sorting parameter user selected
-        $sortParameter = $_POST["sortparameter"];
-
-        // Acquire comment query results using a particular order parameter
-        $sortedComments = \Models\CommentModel::findAndSortByParameter($linkid, $sortParameter);
-    }
 }

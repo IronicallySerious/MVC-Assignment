@@ -34,6 +34,7 @@
 				Views- {{ linkdata.clicks }} 
 					| <a class="link" href="/link/upvote/{{ linkdata.id }}/{{ username }}">Upvote</a>
 					| <a class="link" href="/link/downvote/{{ linkdata.id }}/{{ username }}">Downvote</a>
+				<h3 class="subheading">Tags:</h3> {{ linkdata.tags }}
 			</div>
 			
 			<br/>
@@ -51,6 +52,7 @@
 			{% for comment in comments %}
 			
 				<h3 class="subheading"><a href="/u/{{ comment.username }}">{{ comment.username }}</a></h3>
+				<h4 style="font-weight: 100; margin-top:0px;"><i>Posted: {{ comment.posttime }}</i></h4>
 				<i>{{ comment.content }}</i>
 				<br>
 				<button><a class="link" href = "/comment/upvote/{{ linkdata.id }}/{{ comment.username }}">Upvote</a></button>

@@ -14,6 +14,7 @@ return array(
     'Controllers\\HomeController' => $baseDir . '/app/controllers/home_controller.php',
     'Controllers\\HomePageController' => $baseDir . '/app/controllers/homepage_controller.php',
     'Controllers\\LinkController' => $baseDir . '/app/controllers/link_controller.php',
+    'Controllers\\LogOutController' => $baseDir . '/app/controllers/logout_controller.php',
     'Controllers\\LoginController' => $baseDir . '/app/controllers/login_controller.php',
     'Controllers\\SignUpController' => $baseDir . '/app/controllers/signup_controller.php',
     'Controllers\\TopLinksController' => $baseDir . '/app/controllers/toplinks_controller.php',

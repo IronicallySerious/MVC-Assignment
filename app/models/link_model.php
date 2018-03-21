@@ -46,7 +46,7 @@ class LinkModel{
 		$db = \DB::get_instance();
 
 		// Prepare and send a SQL query
-		$stmt = $db->prepare("SELECT id,title,username,`url`,clicks 
+		$stmt = $db->prepare("SELECT id,title,username,`url`,clicks,tags
 								FROM Links 
 								WHERE id=?");
 		$stmt->execute([$id]);
@@ -72,8 +72,8 @@ class LinkModel{
 
 	/* 
 		Returns result set of trending links in descending order of trendiness
-		The trendiness of a link has been decided to be dependent on the sum of clicks and upvotes and the age
-		that a link gets, instead of just ratio of upvotes to clicks or age of the post
+		The trendiness of a link has been decided to be dependent on the sum of clicks and upvotes,
+		instead of just ratio of upvotes to clicks or age of the post
 
 		Because if just the ratio is applied:
 

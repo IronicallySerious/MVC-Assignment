@@ -25,6 +25,7 @@ Toro::serve(array(
     "/link/:number" => "\Controllers\LinkController",
         "/link/upvote/:number/:alpha" => "\Controllers\UpvoteController",
         "/link/downvote/:number/:alpha" => "\Controllers\DownvoteController",
+        "/link/:alpha" => "\Controllers\LinkController",
 
     "/comment/upvote/:number/:string" => "\Controllers\CommentController",
 
@@ -38,6 +39,8 @@ Toro::serve(array(
 
     "/signup" => "\Controllers\SignUpController",
 
-    "/toplinks" => "\Controllers\TopLinksController"
+    "/toplinks" => "\Controllers\TopLinksController",
+
+    "/logout" => "\Controllers\LogOutController"
 ));
 

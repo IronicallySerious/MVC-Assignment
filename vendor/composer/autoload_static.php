@@ -52,6 +52,7 @@ class ComposerStaticInit27e7fb646005e8d2c2cb12a31dcd2da1
         'Controllers\\HomeController' => __DIR__ . '/../..' . '/app/controllers/home_controller.php',
         'Controllers\\HomePageController' => __DIR__ . '/../..' . '/app/controllers/homepage_controller.php',
         'Controllers\\LinkController' => __DIR__ . '/../..' . '/app/controllers/link_controller.php',
+        'Controllers\\LogOutController' => __DIR__ . '/../..' . '/app/controllers/logout_controller.php',
         'Controllers\\LoginController' => __DIR__ . '/../..' . '/app/controllers/login_controller.php',
         'Controllers\\SignUpController' => __DIR__ . '/../..' . '/app/controllers/signup_controller.php',
         'Controllers\\TopLinksController' => __DIR__ . '/../..' . '/app/controllers/toplinks_controller.php',
