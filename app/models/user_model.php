@@ -35,31 +35,31 @@ class UserModel{
 //
         
     // Returns a bool for 'if the user is signed in to the website'
-    public function isUserSignedIn()
+    public static function isUserSignedIn()
     {
         return $_SESSION["bSignedIn"];
     }
 
     // Returns the username of the user
-    public function getUsername()
+    public static function getUsername()
     {
         return $_SESSION["username"];
     }
 
-    public function getUserUid()
+    public static function getUserUid()
     {
         return $_SESSION["uid"];
     }
 
     // Sets the boolean value of isUserLoggedIn
-    public function setUserIsSignedIn($bNewValue)
+    public static function setUserIsSignedIn($bNewValue)
     {
         $_SESSION["bSignedIn"] = $bNewValue;
         return;
     }
 
     // Inserts a new user to the database table - 'Users'
-    public function insertUser($username, $hashedPassword)
+    public static function insertUser($username, $hashedPassword)
     {
         // Initialises a $db that creates a medium to communicate with the database
         $db = \DB::get_instance();

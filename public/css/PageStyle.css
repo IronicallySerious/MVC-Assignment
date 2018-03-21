@@ -56,3 +56,14 @@ nav{
 .horizontalline{
     background-color: #60dfff;
 }
+.subheading{
+    color: white;
+    height:fit-content;
+    width:fit-content;
+    margin-left: -5px;
+    margin-right: 5px;
+    background-color: #60dfff;
+}
+.commentform{
+    align-items: center;
+}

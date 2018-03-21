@@ -5,7 +5,7 @@
 
 	<title>IReadit</title>
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-	<link rel="stylesheet" href="/css/CommentStyle.css">
+	<link rel="stylesheet" href="/css/PageStyle.css">
 	<link rel="icon" type="image/png" href="/images/favicon.png">
 
 </head>
@@ -27,6 +27,7 @@
 		<hr width="3" size="1080" class="verticalline">	
 		<div class="content">
 			
+			<h2 class="subheading">Link info</h2>
 			<div><a target="_blank" href='{{ linkdata.url }}'><h3> {{ linkdata.title }} </h3></a>
 				<br>
 				Author- {{ linkdata.username }}<br>
@@ -36,7 +37,7 @@
 			</div>
 			
 			<br/>
-			<h2>Comments</h2>
+			<h2 class="subheading">Comments</h2>
 		
 			<form method="POST">
 				Arrange by
@@ -55,15 +56,10 @@
 
 			{% endfor %}
 			
-			<hr>
-			<br>
-				End of feed
-
-			<br>
-			<h2>Add Comment</h2>
-			<form method="POST">
+			<h2 class="subheading">Post a comment</h2>
+			<form method="POST" class="commentform">
 			
-				Content: <input type="text" name="content"><br/>
+				<textarea cols="30" rows="5" name="content"></textarea>
 			
 			</form>
 		</div>
