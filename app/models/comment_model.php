@@ -39,15 +39,53 @@ class CommentModel{
 	}
 
 	// Records a comment upvote in the CommentUpvotes table
-	public static function insertCommentUpvote($uid, $linkid)
+	public static function insertCommentUpvote($username, $linkid)
 	{
 		$db = \DB::get_instance();
 
-		$stmt = $db->prepare("INSERT INTO CommentUpvotes(`uid`,`lid`,`upvotetime`)
+		$stmt = $db->prepare("INSERT INTO CommentUpvotes(`username`,`lid`,`upvotetime`)
 								VALUES(?,?,DEFAULT)");
-		$stmt->execute([$uid, $linkid]);
+		$stmt->execute([$username, $linkid]);
 		$stmt = null;
 
 		return;
+	}
+
+	// Returns the results of a select query that sorts all comment data according to the parameter sent in
+	public static function findAndSortByParameter($linkid, $sortParameter)
+	{
+		$db = \DB::get_instance();
+
+		if($sortParameter == "Chronology")
+		{
+			// Set query to sort by time of sharing
+			$stmt = $db->prepare("SELECT * FROM Links 
+									WHERE linkid=?
+									ORDER BY sharetime DESC");
+	
+		}
+		elseif($sortParameter == "Upvotes")
+		{
+			// Set query to sort by numbers of upvotes
+			$stmt = $db->prepare("SELECT * FROM Links 
+									WHERE linkid=?
+									ORDER BY upvotes DESC");
+		}
+		else
+		// Just to be sure...
+		{
+			return false;
+		}
+
+		// Execute the query prepared above
+		$stmt->execute([$linkid]);
+
+		$rows = $stmt->fetchAll(); // fetchAll() does <$stmt = null;> automatically
+
+		// Increment the click count
+		\Models\LinkModel::setClickCount($linkid);
+
+		return $rows;
+
 	}
 }

@@ -72,8 +72,19 @@ class LinkModel{
 
 	/* 
 		Returns result set of trending links in descending order of trendiness
-		The trendiness of a link has been decided to be dependent on the sum of clicks and upvotes
-		that a link gets, instead of 
+		The trendiness of a link has been decided to be dependent on the sum of clicks and upvotes and the age
+		that a link gets, instead of just ratio of upvotes to clicks or age of the post
+
+		Because if just the ratio is applied:
+
+		1. A year old post that got millions or billions of likes won't be considered as trending
+
+		2. A post that got to the trending page too high will most likely be there for a very long time
+			even when another post that recently got a lot of likes (that doesn't appear in the trending links page) will not be displayed.
+		
+		3. A post that has clickbait stuff on it will wrongly rise up. If we use sum of clicks and views, then such
+			links will not acquire any clicks, and the sum of clicks to views will slowly be overshadowed by other 
+			links that are performing well.
 	*/
 	public static function getTrendingLinks()
 	{

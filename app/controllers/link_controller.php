@@ -27,11 +27,13 @@ class LinkController{
 	// Called when a comment is posted on the link viewer page
 	public function post($slug)
 	{
-		// Create new model and save in db
+		// Prepare comment details to save in Comments table
 		$content = $_POST['content'];
 		$linkid = $slug;
-
-		\Models\CommentModel::insert($content,$linkid, $_SESSION["uid"], $_SESSION["username"]);
+		$row = \Models\UserModel::getUserDetails(\Models\UserModel::getUserNameByLinkId($slug));
+		
+		// Initiate INSERT query
+		\Models\CommentModel::insert($content,$linkid, $uid, $_SESSION["username"]);
 
 		// Re-Rendering the page to incorporate the new comment
 		self::get($linkid);

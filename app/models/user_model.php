@@ -98,7 +98,6 @@ class UserModel{
     /* 
         Returns the entire result of a SELECT query that matches the
         username and DOES NOT CONSIDER MATCHED hashed passwords given to it
-        *Returns NULL if more than one row is found
      */
     public function findWithoutPassword($username)
     {
@@ -106,13 +105,13 @@ class UserModel{
         $db = \DB::get_instance();
 
         // Prepare a SELECT query
-        $stmt = $db->prepare("SELECT `username`,`karma` FROM `Users` WHERE `username`= ?");
+        $stmt = $db->prepare("SELECT * FROM `Users` WHERE `username`= ?");
         
         // Execute the query
         $stmt->execute([$username]);
 
         // Acquire the results
-        $rows = $stmt->fetchAll( \PDO::FETCH_ASSOC ); // fetchAll() does <$stmt = null;> automatically <-- GOOD PRACTICE	
+        $rows = $stmt->fetchAll(); // fetchAll() does <$stmt = null;> automatically <-- GOOD PRACTICE	
 
         // Return the results
         return $rows;            

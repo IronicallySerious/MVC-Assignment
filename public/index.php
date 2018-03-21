@@ -26,7 +26,7 @@ Toro::serve(array(
         "/link/upvote/:number/:alpha" => "\Controllers\UpvoteController",
         "/link/downvote/:number/:alpha" => "\Controllers\DownvoteController",
 
-    "/comment/:number/:alpha" => "\Controllers\CommentController",
+    "/comment/upvote/:number/:string" => "\Controllers\CommentController",
 
     "/u/:alpha" => "\Controllers\UserController",
         "/u/:alpha/followers" => "\Controllers\FollowerController",
