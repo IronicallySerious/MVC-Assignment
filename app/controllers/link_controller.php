@@ -20,7 +20,8 @@ class LinkController{
 											array(
 												'linkdata' => $queryresult,
 												'comments' => $comments,
-												'upvotes' => $upvotes
+												'upvotes' => $upvotes,
+												'username' => $username
 											));
 	}
 

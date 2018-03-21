@@ -67,3 +67,21 @@ nav{
 .commentform{
     align-items: center;
 }
+.submitbutton{
+    background-color: #60dfff;
+    height:50px;
+    width:100px;
+    color: white;
+
+}
+html, body{
+    height: 100%; 
+    min-height: 100%;
+}
+a{
+    text-shadow: black;
+    color: white;
+}
+.link{
+    color: blue;
+}

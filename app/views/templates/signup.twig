@@ -1,7 +1,33 @@
 
-<form method="POST">
-    Username: <input type="text" name="username">
-    Password: <input type="password" name="password">
-    Confirm password: <input type="password">
-    <input type="Submit" name="Submit">
-</form>
+<html>
+<head>
+    <title>IReadit</title>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<link rel="stylesheet" href="/css/PageStyle.css">
+	<link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+
+<body>
+
+    <nav>
+		<a href="/home" class="heading">IReadit</a>
+		<ul type="none" class="navbar-ul">
+		</ul>
+	</nav>
+
+    <div class="page">
+        <hr width="3" size="1080" class="verticalline">	
+
+        <div class="content">
+            <form method="POST">
+                <h3 class="subheading">Username:</h3> <input type="text" name="username">
+                <h3 class="subheading">Password:</h3> <input type="password" name="password">
+                <h3 class="subheading">Confirm password:</h3> <input type="password"><br/><br/>
+                <input type="Submit" name="Submit">
+            </form>
+            <h4 class="subheading">Already a user?</h4>
+            <a class="link" href="/">Sign in instead</a>
+        </div>
+    </div>
+</body>
+</html>

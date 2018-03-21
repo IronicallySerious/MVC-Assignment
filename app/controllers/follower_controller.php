@@ -17,7 +17,8 @@ class FollowerController{
         // Send the follower list while rendering the follower page
         echo \View\Loader::make()->render('templates/followers.twig',
 											array(
-												'followers' => $followerArray
+                                                'followers' => $followerArray,
+                                                'username' => $username
 											));
     }
 }

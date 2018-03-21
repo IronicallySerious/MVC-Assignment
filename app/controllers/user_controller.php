@@ -23,7 +23,8 @@ class UserController{
             echo \View\Loader::make()->render('templates/user.twig',
                                                 array(
                                                     'userdata' => $row,
-                                                    'links' => $links
+                                                    'links' => $links,
+                                                    'username' => $username
                                                 ));
         }
         else

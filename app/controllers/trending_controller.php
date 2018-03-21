@@ -14,7 +14,8 @@ class TrendingController{
         echo \View\Loader::make()->render('templates/home.twig', /* TODO: ADD SUPPORT for passing username */
 				array(
                     'links' => $links,
-                    'username' => $_SESSION["username"]
+                    'username' => $_SESSION["username"],
+                    'template' => "Trending Links"
 				));
     }
 

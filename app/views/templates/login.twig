@@ -1,8 +1,35 @@
-{{ ErrorCode }}
-<form method="POST">
-    Username: <input name="username" type="text">
-    Password: <input name="password" type="password">
-    <input name="Submit" type="Submit" value="Submit">
-</form>
-<br>
-Not a member already? <a href="signup">Sign up!</a>
+<html>
+<head>
+    <title>IReadit</title>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<link rel="stylesheet" href="/css/PageStyle.css">
+	<link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+
+<body>
+    <nav>
+		<a href="/home" class="heading">IReadit</a>
+		<ul type="none" class="navbar-ul">
+		</ul>
+	</nav>
+
+
+    <div class="page">
+        <hr width="3" size="1080" class="verticalline">	
+
+        <div class="content">
+
+            <br/>
+            <br/>
+            {{ ErrorCode }}
+            <form method="POST">
+                <h3 class="subheading">Username:</h3><input name="username" type="text"><br/><br/>
+                <h3 class="subheading">Password:</h3> <input name="password" type="password"><br/><br/>
+                <input name="Submit" type="Submit" value="Submit">
+            </form>
+            <br>
+            <h4 style="display:inline;" class="subheading">Not a member already?</h4> <a class="link" href="signup">Sign up!</a>
+        </div>
+    </div>
+</body>
+</html>

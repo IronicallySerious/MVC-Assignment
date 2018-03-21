@@ -190,4 +190,26 @@ class LinkModel{
 		// Ship
 		return $rows;
 	}
+
+	/* 
+		Returns the top links of the database
+		based on descending oder of number of clicks
+	*/
+	public static function getTopLinks()
+	{
+		// Init a link to the db
+		$db = \DB::get_instance();
+
+		// Prepare and send a SQL query tat selects all link details
+		// in descending order of number of clicks
+		$stmt = $db->prepare("SELECT * FROM Links
+								ORDER BY clicks DESC");
+		$stmt->execute([$username]);
+
+		// Collect results
+		$rows = $stmt->fetchAll(); // fetchAll() does <$stmt = null;> automatically <-- GOOD PRACTICE	
+
+		// Ship
+		return $rows;
+	}
 }

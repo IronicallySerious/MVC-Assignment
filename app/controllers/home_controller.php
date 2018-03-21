@@ -14,7 +14,8 @@ class HomeController{
 		echo \View\Loader::make()->render('templates/home.twig',
 				array(
 					'links' => $links,
-					'username' => $_SESSION["username"]
+					'username' => $_SESSION["username"],
+					'template' => "New Links" 
 				));
 	}
 
@@ -27,15 +28,28 @@ class HomeController{
 		$username = $_POST['username'];
 		$tags = $_POST['tags'];
 
-		// Insert the link in the database
-		\Models\LinkModel::insert($title, $url, $username, $tags);
+		// Check for stupidity :P
+		if($title == "" || $url == "")
+		{
+			if($username == "")
+			{
+				\Controllers\LoginController::get();
+			}
 
-		$links = \Models\LinkModel::all();
+			return;
+		}
+		else
+		{
+			// Insert the link in the database
+			\Models\LinkModel::insert($title, $url, $username, $tags);
 
-		echo \View\Loader::make()->render('templates/home.twig',
-				array(
-					'links' => $links
-				));
+			$links = \Models\LinkModel::all();
 
+			echo \View\Loader::make()->render('templates/home.twig',
+					array(
+						'links' => $links,
+						'username' => $username
+					));
+		}
 	}
 }

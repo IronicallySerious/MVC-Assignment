@@ -1,38 +1,78 @@
-<form method="POST" action="/home">
+<html>
+<head>
+	<title>IReadit</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="/css/PageStyle.css">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
 
-	Title: <input type="text" name="title"><br/>
-	URL: <input type="url" name="url"><br/>
-	Tags: <input type="text" name="tags" placeholder="Separated by spaces"><br/>
-	<input type="Submit" value="Submit">
+<body>
 
-</form>
+	<nav>
+		<a href="/home" class="heading">IReadit</a>
+		<ul type="none" class="navbar-ul">
+			<li class="nav-item nav-head" id="Home"><a href="/home" class="nav-spacing">Home</a></li>
+			<li class="nav-item" id="Toplinks"><a href="/toplinks">Top Links</a></li>
+			<li class="nav-item" id="Trending"><a href="/home/trending">Trending</a></li>
+			<li class="nav-item" id="Follower"><a href="/home/following">Following</a></li>
+			<li class="nav-item nav-tail" id="Profile"><a href="/u/{{ username }}">Profile</a></li>
+		</ul>
+	</nav>
 
-<a href="/home/trending"><h1>TRENDING</h1></a>
-<a href="/home/following"><h1>FOLLOWING</h1></a>
-<a href="/u/{{ username }}"><h1>PROFILE</h1></a>
+	<div class="page">
 
-{% for link in links %}
-<hr>
-<div>
-	<a href='link/{{ link.id }}'>
-		<h3>
-			{{ link.title }}
-		</h3>
-	</a>
+	    <hr width="3" size="1080" class="verticalline">	
 
-	<u>
-		<i>
-			{{ link.sharetime }}
-		</i>
-	</u>
+		<div class="content">
+			<br>
+			<form method="POST" action="/home"
+				  style="
+				  		position: fixed;
+						margin-top: 45%;
+						left: 80%;
+						">
+			
+				<h2 class="subheading">Add a link</h2>
+				<h3 class="subheading" style="display:inline;">Title:</h3> <input type="text" name="title"><br/><br/>
+				<h3 class="subheading" style="display:inline;">URL:</h3> <input type="url" name="url"><br/><br/>
+				<h3 class="subheading" style="display:inline;">Tags:</h3> <input type="text" name="tags" placeholder="Separated by spaces"><br/><br/>
+				<input class="submitbutton" type="Submit" value="Submit">
+			
+			</form>
+			
+			{# <a href="/home/trending"><h1>TRENDING</h1></a>
+			<a href="/home/following"><h1>FOLLOWING</h1></a>
+			<a href="/u/{{ username }}"><h1>PROFILE</h1></a> #}
+			
+			<h2 class="subheading">{{ template }}</h2>
 
-	Views- {{ link.clicks }}
-	Author- {{ link.username }}<br>
-	<h6>
-		<a href=" {{ link.url }} ">Jump</a>
-	</h6>
+			{% for link in links %}
+			<br>
+			<div>
+				<a href='/link/{{ link.id }}'>
+					<h3 class="subheading">
+						{{ link.title }}
+					</h3>
+				</a>
+			
+				<u>
+					Time posted: 
+					<i>
+						{{ link.sharetime }}
+					</i>
+				</u>
+				| Views- {{ link.clicks }}
+				| Author- <a class="link" href="/u/{{ link.username }}">{{ link.username }}</a><br>
+				<h6>
+					<a class="link" href=" {{ link.url }} ">Jump</a>
+				</h6>
+			
+			</div>
+			{% endfor %}
+			
+			<hr>
+		</div>
+	</div>
+</body>
+</html>
 
-</div>
-{% endfor %}
-
-<hr>

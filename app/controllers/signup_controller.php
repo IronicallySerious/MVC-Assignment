@@ -42,7 +42,8 @@ class SignUpController{
             // Redirect to homepage
             echo \View\Loader::make()->render('templates/home.twig',
                                                 array(
-                                                    "ErrorCode" => "OK"
+                                                    "ErrorCode" => "OK",
+                                                    'username' => $username
                                                 ));
         }
         else

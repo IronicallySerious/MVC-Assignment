@@ -1,35 +1,64 @@
-<h1>User Profile</h1>
-Name: {{ userdata.username }}<br/>
-Karma: {{ userdata.karma }}<br/>
-Followers: {{ userdata.followers }}<br/>
-Following: {{ userdata.following }}<br/>
-<a href="/u/{{ userdata.username }}/followers">Followers</a>|
-<a href="/u/{{ userdata.username }}/following">Following</a>
+<html>
+<head>
+    <title>IReadit</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="/css/PageStyle.css">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
 
-<h3>Links posted</h3>
+<body>
 
-{% for link in links %}
-<hr>
-<div>
-    <a href='link/{{ link.id }}'>
-        <h3> 
-            {{ link.title }} 
-        </h3>
-    </a>
-	<u>
-        <i>
-            {{ link.sharetime }}
-        </i>
-    </u>
+    <nav>
+		<a href="/home" class="heading">IReadit</a>
+		<ul type="none" class="navbar-ul">
+			<li class="nav-item nav-head" id="Home"><a href="/home" class="nav-spacing">Home</a></li>
+			<li class="nav-item" id="Toplinks"><a href="/toplinks">Top Links</a></li>
+			<li class="nav-item" id="Trending"><a href="/home/trending">Trending</a></li>
+			<li class="nav-item" id="Follower"><a href="/home/following">Following</a></li>
+			<li class="nav-item nav-tail" id="Profile"><a href="/u/{{ username }}">Profile</a></li>
+		</ul>
+	</nav>
 
-	Views- {{ link.clicks }}
-	
-    <h6>
-        <a href=" {{ link.url }} ">
-            Jump
-        </a>
-    </h6>
+    <div class="page">
+		<hr width="3" size="1080" class="verticalline">	
 
-</div>
-{% endfor %}
+        <div class="content">
+            <h2 class="subheading">User Profile</h2>
+            <h3 class="subheading">Name:</h3> {{ userdata.username }}<br/>
+            <h3 class="subheading">Karma:</h3> {{ userdata.karma }}<br/>
+            <h3 class="subheading">Followers:</h3> {{ userdata.followers }}<br/>
+            <h3 class="subheading">Following:</h3> {{ userdata.following }}<br/><br/>
+            <a class="link" href="/u/{{ userdata.username }}/followers">Followers</a>|
+            <a class="link" href="/u/{{ userdata.username }}/following">Following</a>
+            
+            <h2 class="subheading">Links posted</h2>
+            
+            {% for link in links %}
+            <hr>
+            <div>
+                <a class="link" href='link/{{ link.id }}'>
+                    <h3> 
+                        {{ link.title }} 
+                    </h3>
+                </a>
+                <u>
+                    <i>
+                        {{ link.sharetime }}
+                    </i>
+                </u>
+            
+                Views- {{ link.clicks }}
+                
+                <h6>
+                    <a class="link" href=" {{ link.url }} ">
+                        Jump
+                    </a>
+                </h6>
+            
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
 
