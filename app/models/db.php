@@ -22,7 +22,10 @@ class DB{
 	{
 		if(!self::$instance)
 		{
-			self::$instance = new PDO("mysql:host=localhost;dbname=mvc;", 'root', '123');
+			include __DIR__ .'/../../config.php';
+
+			$str = "mysql:host=" . $config["host"] . ";dbname=mvc;";
+			self::$instance = new PDO($str, $config["username"], $config["password"]);
 		    self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		}
