@@ -22,7 +22,7 @@ class DB{
 	{
 		if(!self::$instance)
 		{
-			include __DIR__ .'/../../config.php';
+			include __DIR__ .'/../../config/config.php';
 
 			$str = "mysql:host=" . $config["host"] . ";dbname=mvc;";
 			self::$instance = new PDO($str, $config["username"], $config["password"]);

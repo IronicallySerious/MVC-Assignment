@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.6.6deb5
+- https://www.phpmyadmin.net
+-
+- Host: localhost:3306
+- Generation Time: Mar 22, 2018 at 04:58 AM
+- Server version: 5.7.21-0ubuntu0.17.10.1
+- PHP Version: 7.1.15-0ubuntu0.17.10.1
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="mvc" collation="latin1_swedish_ci" charset="latin1">
+            <pma:table name="Comments">
+                CREATE TABLE `Comments` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `linkid` int(11) NOT NULL,
+                  `content` varchar(500) NOT NULL,
+                  `posttime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  `username` varchar(100) NOT NULL,
+                  `uid` int(11) DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="CommentUpvotes">
+                CREATE TABLE `CommentUpvotes` (
+                  `username` varchar(30) NOT NULL,
+                  `lid` int(11) NOT NULL,
+                  `upvotetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="Links">
+                CREATE TABLE `Links` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `url` varchar(100) NOT NULL,
+                  `title` varchar(140) NOT NULL,
+                  `username` varchar(30) NOT NULL,
+                  `tags` varchar(255) DEFAULT NULL,
+                  `clicks` int(11) NOT NULL,
+                  `sharetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  `upvotes` int(11) NOT NULL DEFAULT '0',
+                  `traffic` int(11) DEFAULT NULL,
+                  `age` int(11) DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="LinksANDTags">
+                CREATE TABLE `LinksANDTags` (
+                  `linkid` int(11) DEFAULT NULL,
+                  `tag` text,
+                  `record_id` int(11) NOT NULL AUTO_INCREMENT,
+                  PRIMARY KEY (`record_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="LinksJOINUpvotes">
+                CREATE TABLE `LinksJOINUpvotes` (
+                  `lid` int(11) NOT NULL,
+                  `clicks` int(11) NOT NULL,
+                  `count(*)` bigint(21) NOT NULL DEFAULT '0'
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="LinkUpvoteTraffic">
+                CREATE TABLE `LinkUpvoteTraffic` (
+                  `id` int(11) NOT NULL DEFAULT '0',
+                  `url` varchar(100) NOT NULL,
+                  `title` varchar(140) NOT NULL,
+                  `username` varchar(30) NOT NULL,
+                  `tags` varchar(255) DEFAULT NULL,
+                  `clicks` int(11) NOT NULL,
+                  `sharetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                  `upvotes` bigint(21) NOT NULL DEFAULT '0',
+                  `traffic` float NOT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="Tags">
+                CREATE TABLE `Tags` (
+                  `tag` varchar(50) DEFAULT NULL,
+                  `linkid` int(30) NOT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="Upvotes">
+                CREATE TABLE `Upvotes` (
+                  `upvoteid` int(11) NOT NULL AUTO_INCREMENT,
+                  `uid` int(11) NOT NULL,
+                  `lid` int(11) NOT NULL,
+                  `upvotetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                  `type` tinyint(4) NOT NULL,
+                  PRIMARY KEY (`upvoteid`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="Upvote_Frequency">
+                CREATE TABLE `Upvote_Frequency` (
+                  `lid` int(11) NOT NULL,
+                  `upvotes` bigint(21) NOT NULL DEFAULT '0'
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="Users">
+                CREATE TABLE `Users` (
+                  `uid` int(11) NOT NULL AUTO_INCREMENT,
+                  `username` varchar(30) NOT NULL,
+                  `followerids` text,
+                  `followers` int(11) NOT NULL,
+                  `followingids` text,
+                  `following` int(11) NOT NULL,
+                  `karma` int(255) NOT NULL,
+                  `password` text NOT NULL,
+                  PRIMARY KEY (`uid`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+</pma_xml_export>
