@@ -1,4 +1,4 @@
-IReadit
+I* Readit 
 A reddit clone with a modification to share links instead
 
 Localhost setup:
