@@ -46,7 +46,7 @@ class LinkModel{
 		$db = \DB::get_instance();
 
 		// Prepare and send a SQL query
-		$stmt = $db->prepare("SELECT id,title,username,`url`,clicks,tags
+		$stmt = $db->prepare("SELECT id,title,username,`url`,clicks,tags,upvotes
 								FROM Links 
 								WHERE id=?");
 		$stmt->execute([$id]);
@@ -204,7 +204,7 @@ class LinkModel{
 		// in descending order of number of clicks
 		$stmt = $db->prepare("SELECT * FROM Links
 								ORDER BY clicks DESC");
-		$stmt->execute([$username]);
+		$stmt->execute([]);
 
 		// Collect results
 		$rows = $stmt->fetchAll(); // fetchAll() does <$stmt = null;> automatically <-- GOOD PRACTICE	

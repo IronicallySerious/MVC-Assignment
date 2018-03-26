@@ -9,6 +9,6 @@ class FollowingFeedController{
 
     public static function get()
     {
-        return false;
+        echo "Working on this bonus feature";
     }
 }

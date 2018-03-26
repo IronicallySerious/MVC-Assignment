@@ -5,7 +5,7 @@
 - https://www.phpmyadmin.net
 -
 - Host: localhost:3306
-- Generation Time: Mar 22, 2018 at 04:58 AM
+- Generation Time: Mar 27, 2018 at 04:13 AM
 - Server version: 5.7.21-0ubuntu0.17.10.1
 - PHP Version: 7.1.15-0ubuntu0.17.10.1
 -->
@@ -24,8 +24,9 @@
                   `posttime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                   `username` varchar(100) NOT NULL,
                   `uid` int(11) DEFAULT NULL,
+                  `upvotes` int(11) NOT NULL DEFAULT '0',
                   PRIMARY KEY (`id`)
-                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+                ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
             </pma:table>
             <pma:table name="CommentUpvotes">
                 CREATE TABLE `CommentUpvotes` (
@@ -33,7 +34,8 @@
                   `lid` int(11) NOT NULL,
                   `upvotetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                   `id` int(11) NOT NULL AUTO_INCREMENT,
-                  PRIMARY KEY (`id`)
+                  PRIMARY KEY (`id`),
+                  UNIQUE KEY `username` (`username`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
             </pma:table>
             <pma:table name="Links">
@@ -49,7 +51,7 @@
                   `traffic` int(11) DEFAULT NULL,
                   `age` int(11) DEFAULT NULL,
                   PRIMARY KEY (`id`)
-                ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+                ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
             </pma:table>
             <pma:table name="LinksANDTags">
                 CREATE TABLE `LinksANDTags` (

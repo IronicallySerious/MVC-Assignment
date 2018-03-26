@@ -25,9 +25,33 @@ class LinkController{
 											));
 	}
 
-	// Called when a comment is posted on the link viewer page
-	public function post($slug)
+	public static function getSortedComments($slug, $comments)
 	{
+		// Initialising variables to send to twig file as arguments
+		$queryresult = \Models\LinkModel::find($slug, "ascending");
+		// Use the passed in comments
+		$upvotes = \Models\UpvoteModel::getUpvotes($queryresult['id']);
+		$username = $_SESSION["username"];
+
+		echo \View\Loader::make()->render('templates/comments.twig',
+											array(
+												'linkdata' => $queryresult,
+												'comments' => $comments,
+												'upvotes' => $upvotes,
+												'username' => $username
+											));
+	}
+
+	// Called when a comment is posted on the link viewer page
+	public static function post($slug)
+	{
+		if($_POST["sortparameter"] != NULL)
+		{
+			$comments = \Models\CommentModel::findAndSortByParameter($slug, $_POST["sortparameter"]);
+
+			self::getSortedComments($slug, $comments);
+		}
+
 		// Prepare comment details to save in Comments table
 		$content = $_POST['content'];
 		$linkid = $slug;

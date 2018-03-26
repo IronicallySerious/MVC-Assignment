@@ -6,8 +6,16 @@ session_start();
 
 // Handles the upvoting procedure
 class UpvoteController{
-    public static function get($linkid, $username)
+    public static function get($linkid, $username, $modifier = 0)
     {
+        // if a comment was upvoted
+        if($modifier == 1)
+        {
+            var_dump($modifier);
+            \Models\CommentModel::increaseUpvote($username);
+            self::get($linkid, $username);
+        }
+
         $row = \Models\UserModel::getUserDetails($username);
         $_SESSION["uid"] = $row["uid"];
 
@@ -38,6 +46,6 @@ class UpvoteController{
             ; // Do nothing if the user DID upvote it
         }
         
-        header("Location: /link/" . $linkid);
+        \Controllers\LinkController::get($linkid);
     }
 }

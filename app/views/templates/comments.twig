@@ -28,12 +28,14 @@
 		<div class="content">
 			
 			<h2 class="subheading">Link info</h2>
-			<div><a class="link" target="_blank" href='{{ linkdata.url }}'><h3> {{ linkdata.title }} </h3></a>
+			<div><a class="link" target="_blank" href='{{ linkdata.url }}'><h3 class="text-white"> {{ linkdata.title }} </h3></a>
 				<br>
-				Author- {{ linkdata.username }}<br>
-				Views- {{ linkdata.clicks }} 
-					| <a class="link" href="/link/upvote/{{ linkdata.id }}/{{ username }}">Upvote</a>
-					| <a class="link" href="/link/downvote/{{ linkdata.id }}/{{ username }}">Downvote</a>
+				<span class="text-white">
+					Author- {{ linkdata.username }}<br>
+					Views- {{ linkdata.clicks }} 
+				</span>
+					| <a class="link" href="/link/upvote/0/{{ username }}">Upvote</a>
+					| <a class="link" href="/link/downvote/0/{{ username }}">Downvote</a>
 				<h3 class="subheading">Tags:</h3> {{ linkdata.tags }}
 			</div>
 			
@@ -51,11 +53,11 @@
 		
 			{% for comment in comments %}
 			
-				<h3><a class="subheading" href="/u/{{ comment.username }}">{{ comment.username }}</a></h3>
-				<h4 style="font-weight: 100; margin-top:0px;"><i>Posted: {{ comment.posttime }}</i></h4>
-				<i>{{ comment.content }}</i>
+				<h3 style="display:inline;"><a class="subheading" href="/u/{{ comment.username }}">{{ comment.username }}</a></h3>
+				<h4 style="font-weight: 100; margin-top:0px;"><i>Posted: {{ comment.posttime }} | Upvotes: {{ comment.upvotes }}</i></h4>
+				<i><span>{{ comment.content }}</span></i>
 				<br>
-				<button><a class="link" href = "/comment/upvote/{{ linkdata.id }}/{{ comment.username }}">Upvote</a></button>
+				<button><a class="link" href = "/comment/upvote/{{ linkdata.id }}/{{ comment.username }}/1">Upvote</a></button><br><br>
 
 			{% endfor %}
 			

@@ -3,10 +3,16 @@
     top: 0px;
     left: 0px;
     right: 0px;
-    color: rgb(255, 255, 255);
+    color: rgb(184, 184, 184);
 }
 .body{
     background-image: url("/images/background.jpg");
+}
+.text-white{
+    color: white;
+}
+span{
+    color: white;
 }
 .page{
     display: flex;
@@ -19,7 +25,9 @@ nav{
     top: 0px;
     left: 0px;
     right: 0px;
-    margin-top: 0px;
+    margin-top: -10px;
+    margin-left: -10px;
+    margin-right: -5px;
 }
 .navbar-ul{
     display: flex;
