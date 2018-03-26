@@ -3,13 +3,19 @@
     top: 0px;
     left: 0px;
     right: 0px;
+    color: rgb(255, 255, 255);
+}
+.body{
+    background-image: url("/images/background.jpg");
 }
 .page{
     display: flex;
     flex-direction: row;
+    background-color: #000000;
+    background-image: url("/images/background.jpg");
 }
 nav{
-    background-color: #60dfff;
+    background-color: #222222;
     top: 0px;
     left: 0px;
     right: 0px;
@@ -29,6 +35,7 @@ nav{
     margin-bottom: 20px;
     width: 30px;
     font-weight: bold;
+    color: #000000;
 }
 .nav-head{
     text-decoration: inherit;
@@ -41,34 +48,34 @@ nav{
     margin-top: 30px;
     text-decoration: inherit;
     font-size: 100px;
-    color: white;
+    color: rgb(255, 255, 255);
 
 }
 
 .verticalline{
     margin-left: 50px;
     margin-right: 5px;
-    background-color: #60dfff;
-    border-color: white;
+    background-color: #ffffff;
+    border-color: rgb(0, 0, 0);
     border: 0;
     margin-top: 0px;
 }
 .horizontalline{
-    background-color: #60dfff;
+    background-color: #000000;
 }
 .subheading{
-    color: white;
+    color: rgb(0, 0, 0);
     height:fit-content;
     width:fit-content;
     margin-left: -5px;
     margin-right: 5px;
-    background-color: #60dfff;
+    background-color: #ffffff;
 }
 .commentform{
     align-items: center;
 }
 .submitbutton{
-    background-color: #60dfff;
+    background-color: #000000;
     height:50px;
     width:100px;
     color: white;
@@ -84,4 +91,7 @@ a{
 }
 .link{
     color: blue;
+}
+.ordertype{
+    color: black;
 }

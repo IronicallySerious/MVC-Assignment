@@ -43,15 +43,15 @@
 			<form method="POST">
 				Arrange by
 					<select name="sortparameter">
-						<option value="Chronology">Chronology</option>
-						<option value="Upvotes">Upvotes</option>
+						<option value="Chronology"><span class="ordertype">Chronology</span></option>
+						<option class="ordertype" value="Upvotes"><span class="ordertype">Upvotes</span></option>
 					</select>
 					<input type="Submit" name="Submit" value="Go">
 			</form>
 		
 			{% for comment in comments %}
 			
-				<h3 class="subheading"><a href="/u/{{ comment.username }}">{{ comment.username }}</a></h3>
+				<h3><a class="subheading" href="/u/{{ comment.username }}">{{ comment.username }}</a></h3>
 				<h4 style="font-weight: 100; margin-top:0px;"><i>Posted: {{ comment.posttime }}</i></h4>
 				<i>{{ comment.content }}</i>
 				<br>
@@ -62,8 +62,8 @@
 			<h2 class="subheading">Post a comment</h2>
 			<form method="POST" class="commentform">
 			
-				<textarea cols="30" rows="5" name="content"></textarea>
-			
+				<textarea cols="30" rows="5" name="content"></textarea><br/><br/>
+				<input type="Submit" name="Submit" value="Submit">
 			</form>
 		</div>
 	</div>

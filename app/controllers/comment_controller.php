@@ -8,9 +8,7 @@ session_start();
 class CommentController
 {
     public static function get($linkid, $commenterUsername)
-    {
-        // Acquire the user id of the username user $commenterUsername
-        
+    {    
         // Add the comment in the CommentUpvotes table
         \Models\CommentModel::insertCommentUpvote($commenterUsername, $linkid); // Send in the user id of the person who upvoted the comment
 
@@ -21,6 +19,6 @@ class CommentController
         \Models\KarmaModel::increaseKarma($uidOfOP);
 
         // Redirect to link viewer page
-        header("Location: localhost:8000/link/" . $linkid);
+        \Controllers\LinkController::get($linkid);
     }
 }
